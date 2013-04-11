@@ -10,8 +10,17 @@
 		<servlet-class>kul.cs.hci.soundsuggest.server.DataService</servlet-class>
 	</servlet>
 	<servlet-mapping>
-        <servlet-name>dataservice</servlet-name>
-        <url-pattern>/*</url-pattern>
-    </servlet-mapping>
-    
+		<servlet-name>dataservice</servlet-name>
+		<url-pattern>/*</url-pattern>
+	</servlet-mapping>
+
+	<security-constraint>
+		<web-resource-collection>
+			<url-pattern>/*</url-pattern>
+		</web-resource-collection>
+		<user-data-constraint>
+			<transport-guarantee>CONFIDENTIAL</transport-guarantee>
+		</user-data-constraint>
+	</security-constraint>
+
 </web-app>

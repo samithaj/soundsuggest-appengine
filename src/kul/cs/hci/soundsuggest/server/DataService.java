@@ -125,6 +125,7 @@ public class DataService extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         PrintWriter out = response.getWriter();
+        response.setHeader("Access-Control-Allow-Origin", "*");
         response.setContentType(CONTENT_TYPE);
         try {
             this.setUsername(request.getParameter("user"));
@@ -157,7 +158,7 @@ public class DataService extends HttpServlet {
      *                  "SOME_USER",
      *                  ...
      *              ],
-     *              "description" : "SOME_DESCRIPTION"
+     *              "recommendation" : BOOLEAN
      *          },
      *          ...
      *      ],
@@ -188,8 +189,6 @@ public class DataService extends HttpServlet {
             artist.put("name", "item." + encodeName(a.getName()));
             artist.put("edges", new JSONArray());
             artist.put("owners", new JSONArray());
-            //artist.put("description", a.getWikiSummary());
-            artist.put("description", "NA");
             for (User u : artistData.get(a)) {
                 if (u.getName().equalsIgnoreCase(getUsername())) {
                     isRecommendation = false;
